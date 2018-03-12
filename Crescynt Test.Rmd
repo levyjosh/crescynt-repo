@@ -8,8 +8,7 @@ output: html_document
 ## Learning ggplot2 
 ```{r}
 library("ggplot2", lib.loc="~/Library/R/3.2/library")
-mpg
-
+library("ggthemes", lib.loc="~/Library/R/3.2/library")
 ```
 
 
@@ -38,4 +37,39 @@ Make all points blue
 ggplot(data= mpg, aes(x = displ, y = hwy)) +
      geom_point (alpha = 0.4, color = 'blue')
 ```
+
+faceting and theme changes 
+
+```{r}
+ggplot(data= mpg, aes(x = displ, y = hwy, color = class)) +
+  geom_point () + 
+  facet_grid(~ cyl, scales = "free") +
+  theme_bw()
+```
+
+```{r}
+ggplot(mpg, aes(x = drv, y = hwy)) +
+  geom_boxplot() #or jitterplot
+```
+
+lables and linar lines
+
+```{r}
+ggplot(mpg, aes(x = displ, y = hwy)) +
+  geom_smooth(method = 'lm') +
+  geom_point() +
+labs(title = "relationship between engine size and hwy efficiency (mpg)",
+     x = "Displacement",
+     y = "Milage (mpg)")
+```
+
+bar charts
+
+```{r}
+ggplot(mpg, aes(x = fl, fill = class)) +
+  geom_bar(position = "fill") 
+```
+
+
+
 
