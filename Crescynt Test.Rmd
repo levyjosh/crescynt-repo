@@ -6,9 +6,8 @@ output: html_document
 ---
 
 ## Learning ggplot2 
-
 ```{r}
-
+library("ggplot2", lib.loc="~/Library/R/3.2/library")
 mpg
 
 ```
@@ -17,7 +16,26 @@ mpg
 
 ```{r}
 mygraph <- ggplot(data= mpg, aes(x = cyl, y = cty)) +
-  geom_point()
+  geom_point(alpha = 0.4)
 mygraph
+```
+
+
+```{r}
+ggplot(data= mpg, aes(x = cyl, y = cty, color = class)) +
+  geom_point()
+```
+
+Make scatter of 'hwy' vs 'cty' with diff sized points for class and different colors for fuel
+
+```{r}
+ggplot(data= mpg, aes(x = hwy, y = cty, size = class, color = fl)) +
+  geom_point()
+```
+
+Make all points blue
+```{r}
+ggplot(data= mpg, aes(x = displ, y = hwy)) +
+     geom_point (alpha = 0.4, color = 'blue')
 ```
 
