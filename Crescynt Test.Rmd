@@ -9,7 +9,15 @@ output: html_document
 
 ```{r}
 
+mpg
+
+```
 
 
+
+```{r}
+mygraph <- ggplot(data= mpg, aes(x = cyl, y = cty)) +
+  geom_point()
+mygraph
 ```
 
