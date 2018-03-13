@@ -71,3 +71,52 @@ gapminder %>%
   arrange(desc(gdp))
 ```
 
+dont really understand this one... 
+```{r}
+gapminder %>%
+  group_by(country) %>%
+  mutate(gdp = gdpPercap * pop, 
+         max_gdp = max(gdp)) %>%
+  ungroup ()
+```
+
+
+```{r}
+gapminder %>%
+  group_by(country) %>%
+  mutate(gdp = gdpPercap * pop) %>%
+           summarise(max_gdp = max(gdp))
+```
+
+```{r}
+co2 <- read_csv("https://raw.githubusercontent.com/OHI-Science/data-science-training/master/data/co2.csv")
+
+summary(co2)
+```
+
+
+```{r}
+gap2007 <- gapminder %>%
+  filter(year == 2007)
+```
+
+```{r}
+left_join(gap2007, co2, by = "country")
+```
+
+tidyr application- re-ordering data table gap_wide into gap_fixed
+
+```{r}
+gap_wide <- read_csv("https://raw.githubusercontent.com/OHI-Science/data-science-training/master/data/gapminder_wide.csv")
+```
+
+
+```{r}
+gap_fixed <- gap_wide %>%
+  gather(observation, observation_value, -continent, -country) %>%
+  separate(observation, into = c("obs_type", "year"), sep = "_", convert = TRUE) %>%
+  spread(obs_type, observation_value)
+```
+
+
+
